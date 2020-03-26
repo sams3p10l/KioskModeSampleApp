@@ -1,1 +1,1 @@
-KioskSampleApp
+#KioskSampleApp
