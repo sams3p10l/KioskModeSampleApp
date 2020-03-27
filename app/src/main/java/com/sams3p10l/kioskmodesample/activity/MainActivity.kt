@@ -77,10 +77,13 @@ class MainActivity : AppCompatActivity() {
 
         MultiTapDetector(secretKey) {taps, last ->
             if (taps == 3 && last) {
-                Toast.makeText(applicationContext, "RADI CALLBACK", Toast.LENGTH_SHORT).show()
-            } else
-                Toast.makeText(applicationContext, "op op", Toast.LENGTH_SHORT).show()
+                super.onBackPressed()
+            }
         }
+    }
+
+    //empty on purpose, it shouldn't react
+    override fun onBackPressed() {
     }
 
 }
