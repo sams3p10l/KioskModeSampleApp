@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">KioskModeSample</string>
     <string name="admin_desc">Admin receiver</string>
+    <string name="secret_key_string">Press home button to minimize app, back button to kill it</string>
 </resources>

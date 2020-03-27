@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         applyPolicies = intent?.getBooleanExtra("back_enabled", true) ?: true
-        Log.d("back enabled", applyPolicies.toString())
 
         mAdminComponentName = MyDeviceAdminReceiver.getComponentName(this)
         mDevicePolicyManager =
@@ -54,7 +53,10 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "App isn't device owner!", Toast.LENGTH_LONG).show()
         }
 
-        setKioskPolicies(true, isAdmin)
+        if (applyPolicies)
+            setKioskPolicies(true, isAdmin)
+        else
+            setKioskPolicies(false, isAdmin)
     }
 
     override fun onStart() {
@@ -65,7 +67,6 @@ class MainActivity : AppCompatActivity() {
             if (taps == 3 && last) {
                 if (applyPolicies) { //disable policies
                     applyPolicies = false
-                    setKioskPolicies(false, isAdmin)
 
                     val intent = Intent(applicationContext, MainActivity::class.java).apply {
                         addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -76,12 +77,11 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                     Toast.makeText(
                         applicationContext,
-                        "Press back button to exit app",
+                        getString(R.string.secret_key_string),
                         Toast.LENGTH_LONG
                     ).show()
                 } else { //reenable policies
                     applyPolicies = true
-                    setKioskPolicies(true, isAdmin)
 
                     val intent = Intent(applicationContext, MainActivity::class.java).apply {
                         addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
