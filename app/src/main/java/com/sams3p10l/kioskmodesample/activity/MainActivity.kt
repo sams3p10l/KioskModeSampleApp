@@ -198,7 +198,6 @@ class MainActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility = flags
     }
 
-    //empty on purpose, it shouldn't react
     override fun onBackPressed() {
         if (!applyPolicies) {
             finishAndRemoveTask()
